@@ -113,4 +113,52 @@ Route::namespace('SaltContacts\Controllers')
     // DESTROY data by ID (id), selected IDs (selected), and All data (all)
     Route::delete("contact_phones/{id}", 'ApiContactsResourcesController@destroy')->where('id', '[a-zA-Z0-9]+'); // soft delete a collection by ID
 
+    // API: EMAILS RESOURCES
+    Route::get("contact_emails", 'ApiContactsResourcesController@index'); // get entire collection
+    Route::post("contact_emails", 'ApiContactsResourcesController@store'); // create new collection
+
+    Route::get("contact_emails/trash", 'ApiContactsResourcesController@trash'); // trash of collection
+
+    Route::post("contact_emails/import", 'ApiContactsResourcesController@import'); // import collection from external
+    Route::post("contact_emails/export", 'ApiContactsResourcesController@export'); // export entire collection
+    Route::get("contact_emails/report", 'ApiContactsResourcesController@report'); // report collection
+
+    Route::get("contact_emails/{id}/trashed", 'ApiContactsResourcesController@trashed')->where('id', '[a-zA-Z0-9]+'); // get collection by ID from trash
+
+    // RESTORE data by ID (id), selected IDs (selected), and All data (all)
+    Route::post("contact_emails/{id}/restore", 'ApiContactsResourcesController@restore')->where('id', '[a-zA-Z0-9]+'); // restore collection by ID
+
+    // DELETE data by ID (id), selected IDs (selected), and All data (all)
+    Route::delete("contact_emails/{id}/delete", 'ApiContactsResourcesController@delete')->where('id', '[a-zA-Z0-9]+'); // hard delete collection by ID
+
+    Route::get("contact_emails/{id}", 'ApiContactsResourcesController@show')->where('id', '[a-zA-Z0-9]+'); // get collection by ID
+    Route::put("contact_emails/{id}", 'ApiContactsResourcesController@update')->where('id', '[a-zA-Z0-9]+'); // update collection by ID
+    Route::patch("contact_emails/{id}", 'ApiContactsResourcesController@patch')->where('id', '[a-zA-Z0-9]+'); // patch collection by ID
+    // DESTROY data by ID (id), selected IDs (selected), and All data (all)
+    Route::delete("contact_emails/{id}", 'ApiContactsResourcesController@destroy')->where('id', '[a-zA-Z0-9]+'); // soft delete a collection by ID
+
+    // API: URLS RESOURCES
+    Route::get("contact_urls", 'ApiContactsResourcesController@index'); // get entire collection
+    Route::post("contact_urls", 'ApiContactsResourcesController@store'); // create new collection
+
+    Route::get("contact_urls/trash", 'ApiContactsResourcesController@trash'); // trash of collection
+
+    Route::post("contact_urls/import", 'ApiContactsResourcesController@import'); // import collection from external
+    Route::post("contact_urls/export", 'ApiContactsResourcesController@export'); // export entire collection
+    Route::get("contact_urls/report", 'ApiContactsResourcesController@report'); // report collection
+
+    Route::get("contact_urls/{id}/trashed", 'ApiContactsResourcesController@trashed')->where('id', '[a-zA-Z0-9]+'); // get collection by ID from trash
+
+    // RESTORE data by ID (id), selected IDs (selected), and All data (all)
+    Route::post("contact_urls/{id}/restore", 'ApiContactsResourcesController@restore')->where('id', '[a-zA-Z0-9]+'); // restore collection by ID
+
+    // DELETE data by ID (id), selected IDs (selected), and All data (all)
+    Route::delete("contact_urls/{id}/delete", 'ApiContactsResourcesController@delete')->where('id', '[a-zA-Z0-9]+'); // hard delete collection by ID
+
+    Route::get("contact_urls/{id}", 'ApiContactsResourcesController@show')->where('id', '[a-zA-Z0-9]+'); // get collection by ID
+    Route::put("contact_urls/{id}", 'ApiContactsResourcesController@update')->where('id', '[a-zA-Z0-9]+'); // update collection by ID
+    Route::patch("contact_urls/{id}", 'ApiContactsResourcesController@patch')->where('id', '[a-zA-Z0-9]+'); // patch collection by ID
+    // DESTROY data by ID (id), selected IDs (selected), and All data (all)
+    Route::delete("contact_urls/{id}", 'ApiContactsResourcesController@destroy')->where('id', '[a-zA-Z0-9]+'); // soft delete a collection by ID
+
 });
