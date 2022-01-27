@@ -65,5 +65,28 @@ Route::namespace('SaltContacts\Controllers')
     // DESTROY data by ID (id), selected IDs (selected), and All data (all)
     Route::delete("contact_addresses/{id}", 'ApiContactsResourcesController@destroy')->where('id', '[a-zA-Z0-9]+'); // soft delete a collection by ID
 
-    Route::resource('contact_addresses.cities', 'ApiNestedResourcesController');
+    // API: GROUPS RESOURCES
+    Route::get("contact_groups", 'ApiContactsResourcesController@index'); // get entire collection
+    Route::post("contact_groups", 'ApiContactsResourcesController@store'); // create new collection
+
+    Route::get("contact_groups/trash", 'ApiContactsResourcesController@trash'); // trash of collection
+
+    Route::post("contact_groups/import", 'ApiContactsResourcesController@import'); // import collection from external
+    Route::post("contact_groups/export", 'ApiContactsResourcesController@export'); // export entire collection
+    Route::get("contact_groups/report", 'ApiContactsResourcesController@report'); // report collection
+
+    Route::get("contact_groups/{id}/trashed", 'ApiContactsResourcesController@trashed')->where('id', '[a-zA-Z0-9]+'); // get collection by ID from trash
+
+    // RESTORE data by ID (id), selected IDs (selected), and All data (all)
+    Route::post("contact_groups/{id}/restore", 'ApiContactsResourcesController@restore')->where('id', '[a-zA-Z0-9]+'); // restore collection by ID
+
+    // DELETE data by ID (id), selected IDs (selected), and All data (all)
+    Route::delete("contact_groups/{id}/delete", 'ApiContactsResourcesController@delete')->where('id', '[a-zA-Z0-9]+'); // hard delete collection by ID
+
+    Route::get("contact_groups/{id}", 'ApiContactsResourcesController@show')->where('id', '[a-zA-Z0-9]+'); // get collection by ID
+    Route::put("contact_groups/{id}", 'ApiContactsResourcesController@update')->where('id', '[a-zA-Z0-9]+'); // update collection by ID
+    Route::patch("contact_groups/{id}", 'ApiContactsResourcesController@patch')->where('id', '[a-zA-Z0-9]+'); // patch collection by ID
+    // DESTROY data by ID (id), selected IDs (selected), and All data (all)
+    Route::delete("contact_groups/{id}", 'ApiContactsResourcesController@destroy')->where('id', '[a-zA-Z0-9]+'); // soft delete a collection by ID
+
 });
