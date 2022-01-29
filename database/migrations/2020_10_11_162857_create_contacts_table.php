@@ -34,6 +34,7 @@ class CreateContactsTable extends Migration
             $table->string('job_title')->nullable();
             $table->string('department')->nullable();
             $table->string('phonetic_company_name')->nullable();
+            $table->text('note')->nullable();
 
             $table->timestamps();
             $table->softDeletes();

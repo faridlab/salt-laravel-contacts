@@ -41,6 +41,7 @@ class Contacts extends Resources {
         'job_title',
         'department',
         'phonetic_company_name',
+        'note'
     ];
 
     protected $rules = array(
@@ -61,6 +62,7 @@ class Contacts extends Resources {
         'job_title' => 'nullable|string',
         'department' => 'nullable|string',
         'phonetic_company_name' => 'nullable|string',
+        'note' => 'nullable|string',
     );
 
     protected $auths = array (
@@ -99,7 +101,8 @@ class Contacts extends Resources {
         'nickname',
         'job_title',
         'department',
-        'phonetic_company_name'
+        'phonetic_company_name',
+        'note'
     );
 
     protected $fillable = array(
@@ -119,7 +122,8 @@ class Contacts extends Resources {
         'nickname',
         'job_title',
         'department',
-        'phonetic_company_name'
+        'phonetic_company_name',
+        'note'
     );
 
     public function addresses() {
