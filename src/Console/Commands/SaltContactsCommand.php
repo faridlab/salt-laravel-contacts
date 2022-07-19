@@ -11,7 +11,7 @@ class SaltContactsCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'salt-laravel-contacts:command';
+    protected $signature = 'contacts:command';
 
     /**
      * The console command description.
