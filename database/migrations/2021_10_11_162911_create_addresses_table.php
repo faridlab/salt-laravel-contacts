@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAddressesTable extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -14,8 +14,8 @@ class CreateAddressesTable extends Migration
     public function up()
     {
         Schema::create('contact_addresses', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('contact_id')->constrained('contacts');
+            $table->uuid('id')->primary();
+            $table->foreignUuid('contact_id')->references('id')->on('contacts');
 
             $table->enum('type', ['school', 'work', 'home', 'other'])->default('home');
             $table->string('type_other')->nullable();
@@ -44,4 +44,4 @@ class CreateAddressesTable extends Migration
     {
         Schema::dropIfExists('addresses');
     }
-}
+};

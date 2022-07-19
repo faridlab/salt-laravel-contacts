@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUrlsTable extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateUrlsTable extends Migration
      */
     public function up()
     {
-        Schema::create('contact_urls', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('contact_id')->constrained('contacts');
-            $table->enum('type', ['home', 'work', 'school', 'main', 'homepage', 'other'])->default('homepage');
-            $table->string('url');
+        Schema::create('contact_phones', function (Blueprint $table) {
+            $table->uuid('id')->primary();
+            $table->foreignUuid('contact_id')->references('id')->on('contacts');
+            $table->enum('type', ['mobile', 'home', 'work', 'school', 'iPhone', 'Android', 'main', 'home fax', 'work fax', 'pager', 'other'])->default('mobile');
+            $table->string('phone');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -32,4 +32,4 @@ class CreateUrlsTable extends Migration
     {
         Schema::dropIfExists('addresses');
     }
-}
+};

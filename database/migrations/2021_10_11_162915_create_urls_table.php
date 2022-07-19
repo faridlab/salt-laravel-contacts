@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateGroupsTable extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreateGroupsTable extends Migration
      */
     public function up()
     {
-        Schema::create('contact_groups', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('contact_id')->constrained('contacts');
-            $table->string('name');
+        Schema::create('contact_urls', function (Blueprint $table) {
+            $table->uuid('id')->primary();
+            $table->foreignUuid('contact_id')->references('id')->on('contacts');
+            $table->enum('type', ['home', 'work', 'school', 'main', 'homepage', 'other'])->default('homepage');
+            $table->string('url');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -31,4 +32,4 @@ class CreateGroupsTable extends Migration
     {
         Schema::dropIfExists('addresses');
     }
-}
+};
