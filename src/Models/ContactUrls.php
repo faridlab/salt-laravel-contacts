@@ -10,10 +10,13 @@ use Illuminate\Support\Facades\Schema;
 
 use SaltLaravel\Models\Resources;
 use SaltLaravel\Traits\ObservableModel;
+use SaltLaravel\Traits\Uuids;
 
 class ContactUrls extends Resources {
 
+    use Uuids;
     use ObservableModel;
+
     protected $filters = [
         'default',
         'search',

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEmailsTable extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateEmailsTable extends Migration
      */
     public function up()
     {
-        Schema::create('contact_emails', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('contact_id')->constrained('contacts');
-            $table->enum('type', ['home', 'work', 'school', 'main', 'email', 'other'])->default('email');
-            $table->string('email');
+        Schema::create('contact_groups', function (Blueprint $table) {
+            $table->uuid('id')->primary();
+            $table->foreignUuid('contact_id')->references('id')->on('contacts');
+            $table->string('name');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -32,4 +31,4 @@ class CreateEmailsTable extends Migration
     {
         Schema::dropIfExists('addresses');
     }
-}
+};
