@@ -74,7 +74,8 @@ class ContactAdresses extends Resources {
     protected $forms = array();
     protected $structures = array();
 
-    protected $searchable = array('contact_id',
+    protected $searchable = array(
+        'contact_id',
         'type',
         'type_other',
         'country',
@@ -87,7 +88,8 @@ class ContactAdresses extends Resources {
         'longitude',
     );
 
-    protected $fillable = array('contact_id',
+    protected $fillable = array(
+        'contact_id',
         'type',
         'type_other',
         'country',
