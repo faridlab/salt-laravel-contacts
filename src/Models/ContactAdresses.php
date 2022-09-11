@@ -49,7 +49,7 @@ class ContactAdresses extends Resources {
         'province' => 'nullable|string',
         'city' => 'nullable|string',
         'address' => 'required|string',
-        'address2' => 'required|string',
+        'address2' => 'nullable|string',
         'postalcode' => 'required|string',
         'latitude' => 'nullable|float',
         'longitude' => 'nullable|float',
