@@ -12,7 +12,7 @@ use SaltLaravel\Models\Resources;
 use SaltLaravel\Traits\ObservableModel;
 use SaltLaravel\Traits\Uuids;
 
-class ContactAdresses extends Resources {
+class ContactAddresses extends Resources {
 
     use Uuids;
     use ObservableModel;
@@ -42,7 +42,7 @@ class ContactAdresses extends Resources {
     ];
 
     protected $rules = array(
-        'contact_id' => 'required|integer',
+        'contact_id' => 'required|string',
         'type' => 'required|string',
         'type_other' => 'nullable|string',
         'country' => 'nullable|string',
@@ -102,9 +102,9 @@ class ContactAdresses extends Resources {
         'longitude',
     );
 
-    protected $casts = [
-        'contact' => 'array',
-    ];
+    // protected $casts = [
+    //     'contact' => 'array',
+    // ];
 
     public function contact() {
         return $this->belongsTo('SaltContacts\Models\Contacts', 'contact_id', 'id')->withTrashed();
