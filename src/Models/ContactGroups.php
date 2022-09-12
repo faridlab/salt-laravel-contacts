@@ -33,7 +33,7 @@ class ContactGroups extends Resources {
     ];
 
     protected $rules = array(
-        'contact_id' => 'required|integer',
+        'contact_id' => 'required|string',
         'name' => 'required|string'
     );
 

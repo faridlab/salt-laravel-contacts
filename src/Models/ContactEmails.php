@@ -34,7 +34,7 @@ class ContactEmails extends Resources {
     ];
 
     protected $rules = array(
-        'contact_id' => 'required|integer',
+        'contact_id' => 'required|string',
         'type' => 'required|string',
         'email' => 'required|string'
     );
