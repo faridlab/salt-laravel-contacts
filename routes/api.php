@@ -3,8 +3,15 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-use SaltContacts\Controllers\ApiContactsResourcesController;
 use SaltContacts\Controllers\ApiNestedResourcesController;
+
+use SaltContacts\Controllers\ContactsResourcesController;
+use SaltContacts\Controllers\ContactAddressesResourcesController;
+use SaltContacts\Controllers\ContactEmailsResourcesController;
+use SaltContacts\Controllers\ContactGroupsResourcesController;
+use SaltContacts\Controllers\ContactPhonesResourcesController;
+use SaltContacts\Controllers\ContactSocialsResourcesController;
+use SaltContacts\Controllers\ContactUrlsResourcesController;
 
 $version = config('app.API_VERSION', 'v1');
 
@@ -13,28 +20,28 @@ Route::middleware(['api'])
     ->group(function () {
 
     // API: CONTACTS RESOURCES
-    Route::get("contacts", [ApiContactsResourcesController::class, 'index']); // get entire collection
-    Route::post("contacts", [ApiContactsResourcesController::class, 'store']); // create new collection
+    Route::get("contacts", [ContactsResourcesController::class, 'index']); // get entire collection
+    Route::post("contacts", [ContactsResourcesController::class, 'store']); // create new collection
 
-    Route::get("contacts/trash", [ApiContactsResourcesController::class, 'trash']); // trash of collection
+    Route::get("contacts/trash", [ContactsResourcesController::class, 'trash']); // trash of collection
 
-    Route::post("contacts/import", [ApiContactsResourcesController::class, 'import']); // import collection from external
-    Route::post("contacts/export", [ApiContactsResourcesController::class, 'export']); // export entire collection
-    Route::get("contacts/report", [ApiContactsResourcesController::class, 'report']); // report collection
+    Route::post("contacts/import", [ContactsResourcesController::class, 'import']); // import collection from external
+    Route::post("contacts/export", [ContactsResourcesController::class, 'export']); // export entire collection
+    Route::get("contacts/report", [ContactsResourcesController::class, 'report']); // report collection
 
-    Route::get("contacts/{id}/trashed", [ApiContactsResourcesController::class, 'trashed'])->where('id', '[a-zA-Z0-9-]+'); // get collection by ID from trash
+    Route::get("contacts/{id}/trashed", [ContactsResourcesController::class, 'trashed'])->where('id', '[a-zA-Z0-9-]+'); // get collection by ID from trash
 
     // RESTORE data by ID (id), selected IDs (selected), and All data (all)
-    Route::post("contacts/{id}/restore", [ApiContactsResourcesController::class, 'restore'])->where('id', '[a-zA-Z0-9-]+'); // restore collection by ID
+    Route::post("contacts/{id}/restore", [ContactsResourcesController::class, 'restore'])->where('id', '[a-zA-Z0-9-]+'); // restore collection by ID
 
     // DELETE data by ID (id), selected IDs (selected), and All data (all)
-    Route::delete("contacts/{id}/delete", [ApiContactsResourcesController::class, 'delete'])->where('id', '[a-zA-Z0-9-]+'); // hard delete collection by ID
+    Route::delete("contacts/{id}/delete", [ContactsResourcesController::class, 'delete'])->where('id', '[a-zA-Z0-9-]+'); // hard delete collection by ID
 
-    Route::get("contacts/{id}", [ApiContactsResourcesController::class, 'show'])->where('id', '[a-zA-Z0-9-]+'); // get collection by ID
-    Route::put("contacts/{id}", [ApiContactsResourcesController::class, 'update'])->where('id', '[a-zA-Z0-9-]+'); // update collection by ID
-    Route::patch("contacts/{id}", [ApiContactsResourcesController::class, 'patch'])->where('id', '[a-zA-Z0-9-]+'); // patch collection by ID
+    Route::get("contacts/{id}", [ContactsResourcesController::class, 'show'])->where('id', '[a-zA-Z0-9-]+'); // get collection by ID
+    Route::put("contacts/{id}", [ContactsResourcesController::class, 'update'])->where('id', '[a-zA-Z0-9-]+'); // update collection by ID
+    Route::patch("contacts/{id}", [ContactsResourcesController::class, 'patch'])->where('id', '[a-zA-Z0-9-]+'); // patch collection by ID
     // DESTROY data by ID (id), selected IDs (selected), and All data (all)
-    Route::delete("contacts/{id}", [ApiContactsResourcesController::class, 'destroy'])->where('id', '[a-zA-Z0-9-]+'); // soft delete a collection by ID
+    Route::delete("contacts/{id}", [ContactsResourcesController::class, 'destroy'])->where('id', '[a-zA-Z0-9-]+'); // soft delete a collection by ID
 
     Route::resource('contacts.contact_addresses', ApiNestedResourcesController::class);
     Route::resource('contacts.contact_groups', ApiNestedResourcesController::class);
@@ -44,147 +51,147 @@ Route::middleware(['api'])
     Route::resource('contacts.contact_socials', ApiNestedResourcesController::class);
 
     // API: ADDRESSES RESOURCES
-    Route::get("contact_addresses", [ApiContactsResourcesController::class, 'index']); // get entire collection
-    Route::post("contact_addresses", [ApiContactsResourcesController::class, 'store']); // create new collection
+    Route::get("contact_addresses", [ContactAddressesResourcesController::class, 'index']); // get entire collection
+    Route::post("contact_addresses", [ContactAddressesResourcesController::class, 'store']); // create new collection
 
-    Route::get("contact_addresses/trash", [ApiContactsResourcesController::class, 'trash']); // trash of collection
+    Route::get("contact_addresses/trash", [ContactAddressesResourcesController::class, 'trash']); // trash of collection
 
-    Route::post("contact_addresses/import", [ApiContactsResourcesController::class, 'import']); // import collection from external
-    Route::post("contact_addresses/export", [ApiContactsResourcesController::class, 'export']); // export entire collection
-    Route::get("contact_addresses/report", [ApiContactsResourcesController::class, 'report']); // report collection
+    Route::post("contact_addresses/import", [ContactAddressesResourcesController::class, 'import']); // import collection from external
+    Route::post("contact_addresses/export", [ContactAddressesResourcesController::class, 'export']); // export entire collection
+    Route::get("contact_addresses/report", [ContactAddressesResourcesController::class, 'report']); // report collection
 
-    Route::get("contact_addresses/{id}/trashed", [ApiContactsResourcesController::class, 'trashed'])->where('id', '[a-zA-Z0-9-]+'); // get collection by ID from trash
+    Route::get("contact_addresses/{id}/trashed", [ContactAddressesResourcesController::class, 'trashed'])->where('id', '[a-zA-Z0-9-]+'); // get collection by ID from trash
 
     // RESTORE data by ID (id), selected IDs (selected), and All data (all)
-    Route::post("contact_addresses/{id}/restore", [ApiContactsResourcesController::class, 'restore'])->where('id', '[a-zA-Z0-9-]+'); // restore collection by ID
+    Route::post("contact_addresses/{id}/restore", [ContactAddressesResourcesController::class, 'restore'])->where('id', '[a-zA-Z0-9-]+'); // restore collection by ID
 
     // DELETE data by ID (id), selected IDs (selected), and All data (all)
-    Route::delete("contact_addresses/{id}/delete", [ApiContactsResourcesController::class, 'delete'])->where('id', '[a-zA-Z0-9-]+'); // hard delete collection by ID
+    Route::delete("contact_addresses/{id}/delete", [ContactAddressesResourcesController::class, 'delete'])->where('id', '[a-zA-Z0-9-]+'); // hard delete collection by ID
 
-    Route::get("contact_addresses/{id}", [ApiContactsResourcesController::class, 'show'])->where('id', '[a-zA-Z0-9-]+'); // get collection by ID
-    Route::put("contact_addresses/{id}", [ApiContactsResourcesController::class, 'update'])->where('id', '[a-zA-Z0-9-]+'); // update collection by ID
-    Route::patch("contact_addresses/{id}", [ApiContactsResourcesController::class, 'patch'])->where('id', '[a-zA-Z0-9-]+'); // patch collection by ID
+    Route::get("contact_addresses/{id}", [ContactAddressesResourcesController::class, 'show'])->where('id', '[a-zA-Z0-9-]+'); // get collection by ID
+    Route::put("contact_addresses/{id}", [ContactAddressesResourcesController::class, 'update'])->where('id', '[a-zA-Z0-9-]+'); // update collection by ID
+    Route::patch("contact_addresses/{id}", [ContactAddressesResourcesController::class, 'patch'])->where('id', '[a-zA-Z0-9-]+'); // patch collection by ID
     // DESTROY data by ID (id), selected IDs (selected), and All data (all)
-    Route::delete("contact_addresses/{id}", [ApiContactsResourcesController::class, 'destroy'])->where('id', '[a-zA-Z0-9-]+'); // soft delete a collection by ID
+    Route::delete("contact_addresses/{id}", [ContactAddressesResourcesController::class, 'destroy'])->where('id', '[a-zA-Z0-9-]+'); // soft delete a collection by ID
 
     // API: GROUPS RESOURCES
-    Route::get("contact_groups", [ApiContactsResourcesController::class, 'index']); // get entire collection
-    Route::post("contact_groups", [ApiContactsResourcesController::class, 'store']); // create new collection
+    Route::get("contact_groups", [ContactGroupsResourcesController::class, 'index']); // get entire collection
+    Route::post("contact_groups", [ContactGroupsResourcesController::class, 'store']); // create new collection
 
-    Route::get("contact_groups/trash", [ApiContactsResourcesController::class, 'trash']); // trash of collection
+    Route::get("contact_groups/trash", [ContactGroupsResourcesController::class, 'trash']); // trash of collection
 
-    Route::post("contact_groups/import", [ApiContactsResourcesController::class, 'import']); // import collection from external
-    Route::post("contact_groups/export", [ApiContactsResourcesController::class, 'export']); // export entire collection
-    Route::get("contact_groups/report", [ApiContactsResourcesController::class, 'report']); // report collection
+    Route::post("contact_groups/import", [ContactGroupsResourcesController::class, 'import']); // import collection from external
+    Route::post("contact_groups/export", [ContactGroupsResourcesController::class, 'export']); // export entire collection
+    Route::get("contact_groups/report", [ContactGroupsResourcesController::class, 'report']); // report collection
 
-    Route::get("contact_groups/{id}/trashed", [ApiContactsResourcesController::class, 'trashed'])->where('id', '[a-zA-Z0-9-]+'); // get collection by ID from trash
+    Route::get("contact_groups/{id}/trashed", [ContactGroupsResourcesController::class, 'trashed'])->where('id', '[a-zA-Z0-9-]+'); // get collection by ID from trash
 
     // RESTORE data by ID (id), selected IDs (selected), and All data (all)
-    Route::post("contact_groups/{id}/restore", [ApiContactsResourcesController::class, 'restore'])->where('id', '[a-zA-Z0-9-]+'); // restore collection by ID
+    Route::post("contact_groups/{id}/restore", [ContactGroupsResourcesController::class, 'restore'])->where('id', '[a-zA-Z0-9-]+'); // restore collection by ID
 
     // DELETE data by ID (id), selected IDs (selected), and All data (all)
-    Route::delete("contact_groups/{id}/delete", [ApiContactsResourcesController::class, 'delete'])->where('id', '[a-zA-Z0-9-]+'); // hard delete collection by ID
+    Route::delete("contact_groups/{id}/delete", [ContactGroupsResourcesController::class, 'delete'])->where('id', '[a-zA-Z0-9-]+'); // hard delete collection by ID
 
-    Route::get("contact_groups/{id}", [ApiContactsResourcesController::class, 'show'])->where('id', '[a-zA-Z0-9-]+'); // get collection by ID
-    Route::put("contact_groups/{id}", [ApiContactsResourcesController::class, 'update'])->where('id', '[a-zA-Z0-9-]+'); // update collection by ID
-    Route::patch("contact_groups/{id}", [ApiContactsResourcesController::class, 'patch'])->where('id', '[a-zA-Z0-9-]+'); // patch collection by ID
+    Route::get("contact_groups/{id}", [ContactGroupsResourcesController::class, 'show'])->where('id', '[a-zA-Z0-9-]+'); // get collection by ID
+    Route::put("contact_groups/{id}", [ContactGroupsResourcesController::class, 'update'])->where('id', '[a-zA-Z0-9-]+'); // update collection by ID
+    Route::patch("contact_groups/{id}", [ContactGroupsResourcesController::class, 'patch'])->where('id', '[a-zA-Z0-9-]+'); // patch collection by ID
     // DESTROY data by ID (id), selected IDs (selected), and All data (all)
-    Route::delete("contact_groups/{id}", [ApiContactsResourcesController::class, 'destroy'])->where('id', '[a-zA-Z0-9-]+'); // soft delete a collection by ID
+    Route::delete("contact_groups/{id}", [ContactGroupsResourcesController::class, 'destroy'])->where('id', '[a-zA-Z0-9-]+'); // soft delete a collection by ID
 
     // API: PHONES RESOURCES
-    Route::get("contact_phones", [ApiContactsResourcesController::class, 'index']); // get entire collection
-    Route::post("contact_phones", [ApiContactsResourcesController::class, 'store']); // create new collection
+    Route::get("contact_phones", [ContactPhonesResourcesController::class, 'index']); // get entire collection
+    Route::post("contact_phones", [ContactPhonesResourcesController::class, 'store']); // create new collection
 
-    Route::get("contact_phones/trash", [ApiContactsResourcesController::class, 'trash']); // trash of collection
+    Route::get("contact_phones/trash", [ContactPhonesResourcesController::class, 'trash']); // trash of collection
 
-    Route::post("contact_phones/import", [ApiContactsResourcesController::class, 'import']); // import collection from external
-    Route::post("contact_phones/export", [ApiContactsResourcesController::class, 'export']); // export entire collection
-    Route::get("contact_phones/report", [ApiContactsResourcesController::class, 'report']); // report collection
+    Route::post("contact_phones/import", [ContactPhonesResourcesController::class, 'import']); // import collection from external
+    Route::post("contact_phones/export", [ContactPhonesResourcesController::class, 'export']); // export entire collection
+    Route::get("contact_phones/report", [ContactPhonesResourcesController::class, 'report']); // report collection
 
-    Route::get("contact_phones/{id}/trashed", [ApiContactsResourcesController::class, 'trashed'])->where('id', '[a-zA-Z0-9-]+'); // get collection by ID from trash
+    Route::get("contact_phones/{id}/trashed", [ContactPhonesResourcesController::class, 'trashed'])->where('id', '[a-zA-Z0-9-]+'); // get collection by ID from trash
 
     // RESTORE data by ID (id), selected IDs (selected), and All data (all)
-    Route::post("contact_phones/{id}/restore", [ApiContactsResourcesController::class, 'restore'])->where('id', '[a-zA-Z0-9-]+'); // restore collection by ID
+    Route::post("contact_phones/{id}/restore", [ContactPhonesResourcesController::class, 'restore'])->where('id', '[a-zA-Z0-9-]+'); // restore collection by ID
 
     // DELETE data by ID (id), selected IDs (selected), and All data (all)
-    Route::delete("contact_phones/{id}/delete", [ApiContactsResourcesController::class, 'delete'])->where('id', '[a-zA-Z0-9-]+'); // hard delete collection by ID
+    Route::delete("contact_phones/{id}/delete", [ContactPhonesResourcesController::class, 'delete'])->where('id', '[a-zA-Z0-9-]+'); // hard delete collection by ID
 
-    Route::get("contact_phones/{id}", [ApiContactsResourcesController::class, 'show'])->where('id', '[a-zA-Z0-9-]+'); // get collection by ID
-    Route::put("contact_phones/{id}", [ApiContactsResourcesController::class, 'update'])->where('id', '[a-zA-Z0-9-]+'); // update collection by ID
-    Route::patch("contact_phones/{id}", [ApiContactsResourcesController::class, 'patch'])->where('id', '[a-zA-Z0-9-]+'); // patch collection by ID
+    Route::get("contact_phones/{id}", [ContactPhonesResourcesController::class, 'show'])->where('id', '[a-zA-Z0-9-]+'); // get collection by ID
+    Route::put("contact_phones/{id}", [ContactPhonesResourcesController::class, 'update'])->where('id', '[a-zA-Z0-9-]+'); // update collection by ID
+    Route::patch("contact_phones/{id}", [ContactPhonesResourcesController::class, 'patch'])->where('id', '[a-zA-Z0-9-]+'); // patch collection by ID
     // DESTROY data by ID (id), selected IDs (selected), and All data (all)
-    Route::delete("contact_phones/{id}", [ApiContactsResourcesController::class, 'destroy'])->where('id', '[a-zA-Z0-9-]+'); // soft delete a collection by ID
+    Route::delete("contact_phones/{id}", [ContactPhonesResourcesController::class, 'destroy'])->where('id', '[a-zA-Z0-9-]+'); // soft delete a collection by ID
 
     // API: EMAILS RESOURCES
-    Route::get("contact_emails", [ApiContactsResourcesController::class, 'index']); // get entire collection
-    Route::post("contact_emails", [ApiContactsResourcesController::class, 'store']); // create new collection
+    Route::get("contact_emails", [ContactEmailsResourcesController::class, 'index']); // get entire collection
+    Route::post("contact_emails", [ContactEmailsResourcesController::class, 'store']); // create new collection
 
-    Route::get("contact_emails/trash", [ApiContactsResourcesController::class, 'trash']); // trash of collection
+    Route::get("contact_emails/trash", [ContactEmailsResourcesController::class, 'trash']); // trash of collection
 
-    Route::post("contact_emails/import", [ApiContactsResourcesController::class, 'import']); // import collection from external
-    Route::post("contact_emails/export", [ApiContactsResourcesController::class, 'export']); // export entire collection
-    Route::get("contact_emails/report", [ApiContactsResourcesController::class, 'report']); // report collection
+    Route::post("contact_emails/import", [ContactEmailsResourcesController::class, 'import']); // import collection from external
+    Route::post("contact_emails/export", [ContactEmailsResourcesController::class, 'export']); // export entire collection
+    Route::get("contact_emails/report", [ContactEmailsResourcesController::class, 'report']); // report collection
 
-    Route::get("contact_emails/{id}/trashed", [ApiContactsResourcesController::class, 'trashed'])->where('id', '[a-zA-Z0-9-]+'); // get collection by ID from trash
+    Route::get("contact_emails/{id}/trashed", [ContactEmailsResourcesController::class, 'trashed'])->where('id', '[a-zA-Z0-9-]+'); // get collection by ID from trash
 
     // RESTORE data by ID (id), selected IDs (selected), and All data (all)
-    Route::post("contact_emails/{id}/restore", [ApiContactsResourcesController::class, 'restore'])->where('id', '[a-zA-Z0-9-]+'); // restore collection by ID
+    Route::post("contact_emails/{id}/restore", [ContactEmailsResourcesController::class, 'restore'])->where('id', '[a-zA-Z0-9-]+'); // restore collection by ID
 
     // DELETE data by ID (id), selected IDs (selected), and All data (all)
-    Route::delete("contact_emails/{id}/delete", [ApiContactsResourcesController::class, 'delete'])->where('id', '[a-zA-Z0-9-]+'); // hard delete collection by ID
+    Route::delete("contact_emails/{id}/delete", [ContactEmailsResourcesController::class, 'delete'])->where('id', '[a-zA-Z0-9-]+'); // hard delete collection by ID
 
-    Route::get("contact_emails/{id}", [ApiContactsResourcesController::class, 'show'])->where('id', '[a-zA-Z0-9-]+'); // get collection by ID
-    Route::put("contact_emails/{id}", [ApiContactsResourcesController::class, 'update'])->where('id', '[a-zA-Z0-9-]+'); // update collection by ID
-    Route::patch("contact_emails/{id}", [ApiContactsResourcesController::class, 'patch'])->where('id', '[a-zA-Z0-9-]+'); // patch collection by ID
+    Route::get("contact_emails/{id}", [ContactEmailsResourcesController::class, 'show'])->where('id', '[a-zA-Z0-9-]+'); // get collection by ID
+    Route::put("contact_emails/{id}", [ContactEmailsResourcesController::class, 'update'])->where('id', '[a-zA-Z0-9-]+'); // update collection by ID
+    Route::patch("contact_emails/{id}", [ContactEmailsResourcesController::class, 'patch'])->where('id', '[a-zA-Z0-9-]+'); // patch collection by ID
     // DESTROY data by ID (id), selected IDs (selected), and All data (all)
-    Route::delete("contact_emails/{id}", [ApiContactsResourcesController::class, 'destroy'])->where('id', '[a-zA-Z0-9-]+'); // soft delete a collection by ID
+    Route::delete("contact_emails/{id}", [ContactEmailsResourcesController::class, 'destroy'])->where('id', '[a-zA-Z0-9-]+'); // soft delete a collection by ID
 
     // API: URLS RESOURCES
-    Route::get("contact_urls", [ApiContactsResourcesController::class, 'index']); // get entire collection
-    Route::post("contact_urls", [ApiContactsResourcesController::class, 'store']); // create new collection
+    Route::get("contact_urls", [ContactUrlsResourcesController::class, 'index']); // get entire collection
+    Route::post("contact_urls", [ContactUrlsResourcesController::class, 'store']); // create new collection
 
-    Route::get("contact_urls/trash", [ApiContactsResourcesController::class, 'trash']); // trash of collection
+    Route::get("contact_urls/trash", [ContactUrlsResourcesController::class, 'trash']); // trash of collection
 
-    Route::post("contact_urls/import", [ApiContactsResourcesController::class, 'import']); // import collection from external
-    Route::post("contact_urls/export", [ApiContactsResourcesController::class, 'export']); // export entire collection
-    Route::get("contact_urls/report", [ApiContactsResourcesController::class, 'report']); // report collection
+    Route::post("contact_urls/import", [ContactUrlsResourcesController::class, 'import']); // import collection from external
+    Route::post("contact_urls/export", [ContactUrlsResourcesController::class, 'export']); // export entire collection
+    Route::get("contact_urls/report", [ContactUrlsResourcesController::class, 'report']); // report collection
 
-    Route::get("contact_urls/{id}/trashed", [ApiContactsResourcesController::class, 'trashed'])->where('id', '[a-zA-Z0-9-]+'); // get collection by ID from trash
+    Route::get("contact_urls/{id}/trashed", [ContactUrlsResourcesController::class, 'trashed'])->where('id', '[a-zA-Z0-9-]+'); // get collection by ID from trash
 
     // RESTORE data by ID (id), selected IDs (selected), and All data (all)
-    Route::post("contact_urls/{id}/restore", [ApiContactsResourcesController::class, 'restore'])->where('id', '[a-zA-Z0-9-]+'); // restore collection by ID
+    Route::post("contact_urls/{id}/restore", [ContactUrlsResourcesController::class, 'restore'])->where('id', '[a-zA-Z0-9-]+'); // restore collection by ID
 
     // DELETE data by ID (id), selected IDs (selected), and All data (all)
-    Route::delete("contact_urls/{id}/delete", [ApiContactsResourcesController::class, 'delete'])->where('id', '[a-zA-Z0-9-]+'); // hard delete collection by ID
+    Route::delete("contact_urls/{id}/delete", [ContactUrlsResourcesController::class, 'delete'])->where('id', '[a-zA-Z0-9-]+'); // hard delete collection by ID
 
-    Route::get("contact_urls/{id}", [ApiContactsResourcesController::class, 'show'])->where('id', '[a-zA-Z0-9-]+'); // get collection by ID
-    Route::put("contact_urls/{id}", [ApiContactsResourcesController::class, 'update'])->where('id', '[a-zA-Z0-9-]+'); // update collection by ID
-    Route::patch("contact_urls/{id}", [ApiContactsResourcesController::class, 'patch'])->where('id', '[a-zA-Z0-9-]+'); // patch collection by ID
+    Route::get("contact_urls/{id}", [ContactUrlsResourcesController::class, 'show'])->where('id', '[a-zA-Z0-9-]+'); // get collection by ID
+    Route::put("contact_urls/{id}", [ContactUrlsResourcesController::class, 'update'])->where('id', '[a-zA-Z0-9-]+'); // update collection by ID
+    Route::patch("contact_urls/{id}", [ContactUrlsResourcesController::class, 'patch'])->where('id', '[a-zA-Z0-9-]+'); // patch collection by ID
     // DESTROY data by ID (id), selected IDs (selected), and All data (all)
-    Route::delete("contact_urls/{id}", [ApiContactsResourcesController::class, 'destroy'])->where('id', '[a-zA-Z0-9-]+'); // soft delete a collection by ID
+    Route::delete("contact_urls/{id}", [ContactUrlsResourcesController::class, 'destroy'])->where('id', '[a-zA-Z0-9-]+'); // soft delete a collection by ID
 
     // API: SOCIAL PROFILES RESOURCES
-    Route::get("contact_socials", [ApiContactsResourcesController::class, 'index']); // get entire collection
-    Route::post("contact_socials", [ApiContactsResourcesController::class, 'store']); // create new collection
+    Route::get("contact_socials", [ContactSocialsResourcesController::class, 'index']); // get entire collection
+    Route::post("contact_socials", [ContactSocialsResourcesController::class, 'store']); // create new collection
 
-    Route::get("contact_socials/trash", [ApiContactsResourcesController::class, 'trash']); // trash of collection
+    Route::get("contact_socials/trash", [ContactSocialsResourcesController::class, 'trash']); // trash of collection
 
-    Route::post("contact_socials/import", [ApiContactsResourcesController::class, 'import']); // import collection from external
-    Route::post("contact_socials/export", [ApiContactsResourcesController::class, 'export']); // export entire collection
-    Route::get("contact_socials/report", [ApiContactsResourcesController::class, 'report']); // report collection
+    Route::post("contact_socials/import", [ContactSocialsResourcesController::class, 'import']); // import collection from external
+    Route::post("contact_socials/export", [ContactSocialsResourcesController::class, 'export']); // export entire collection
+    Route::get("contact_socials/report", [ContactSocialsResourcesController::class, 'report']); // report collection
 
-    Route::get("contact_socials/{id}/trashed", [ApiContactsResourcesController::class, 'trashed'])->where('id', '[a-zA-Z0-9-]+'); // get collection by ID from trash
+    Route::get("contact_socials/{id}/trashed", [ContactSocialsResourcesController::class, 'trashed'])->where('id', '[a-zA-Z0-9-]+'); // get collection by ID from trash
 
     // RESTORE data by ID (id), selected IDs (selected), and All data (all)
-    Route::post("contact_socials/{id}/restore", [ApiContactsResourcesController::class, 'restore'])->where('id', '[a-zA-Z0-9-]+'); // restore collection by ID
+    Route::post("contact_socials/{id}/restore", [ContactSocialsResourcesController::class, 'restore'])->where('id', '[a-zA-Z0-9-]+'); // restore collection by ID
 
     // DELETE data by ID (id), selected IDs (selected), and All data (all)
-    Route::delete("contact_socials/{id}/delete", [ApiContactsResourcesController::class, 'delete'])->where('id', '[a-zA-Z0-9-]+'); // hard delete collection by ID
+    Route::delete("contact_socials/{id}/delete", [ContactSocialsResourcesController::class, 'delete'])->where('id', '[a-zA-Z0-9-]+'); // hard delete collection by ID
 
-    Route::get("contact_socials/{id}", [ApiContactsResourcesController::class, 'show'])->where('id', '[a-zA-Z0-9-]+'); // get collection by ID
-    Route::put("contact_socials/{id}", [ApiContactsResourcesController::class, 'update'])->where('id', '[a-zA-Z0-9-]+'); // update collection by ID
-    Route::patch("contact_socials/{id}", [ApiContactsResourcesController::class, 'patch'])->where('id', '[a-zA-Z0-9-]+'); // patch collection by ID
+    Route::get("contact_socials/{id}", [ContactSocialsResourcesController::class, 'show'])->where('id', '[a-zA-Z0-9-]+'); // get collection by ID
+    Route::put("contact_socials/{id}", [ContactSocialsResourcesController::class, 'update'])->where('id', '[a-zA-Z0-9-]+'); // update collection by ID
+    Route::patch("contact_socials/{id}", [ContactSocialsResourcesController::class, 'patch'])->where('id', '[a-zA-Z0-9-]+'); // patch collection by ID
     // DESTROY data by ID (id), selected IDs (selected), and All data (all)
-    Route::delete("contact_socials/{id}", [ApiContactsResourcesController::class, 'destroy'])->where('id', '[a-zA-Z0-9-]+'); // soft delete a collection by ID
+    Route::delete("contact_socials/{id}", [ContactSocialsResourcesController::class, 'destroy'])->where('id', '[a-zA-Z0-9-]+'); // soft delete a collection by ID
 
 });
