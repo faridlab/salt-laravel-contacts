@@ -50,7 +50,7 @@ class ContactAddresses extends Resources {
         'city' => 'nullable|string',
         'address' => 'required|string',
         'address2' => 'nullable|string',
-        'postalcode' => 'required|string',
+        'postalcode' => 'nullable|string',
         'latitude' => 'nullable|float',
         'longitude' => 'nullable|float',
     );
