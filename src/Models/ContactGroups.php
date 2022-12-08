@@ -28,12 +28,10 @@ class ContactGroups extends Resources {
         'orderby',
         // Fields table provinces
         'id',
-        'contact_id',
         'name',
     ];
 
     protected $rules = array(
-        'contact_id' => 'required|string',
         'name' => 'required|string'
     );
 
@@ -57,21 +55,10 @@ class ContactGroups extends Resources {
     protected $structures = array();
 
     protected $searchable = array(
-        'contact_id',
         'name'
     );
 
     protected $fillable = array(
-        'contact_id',
         'name'
     );
-
-    protected $casts = [
-        'contact' => 'array',
-    ];
-
-    public function contact() {
-        return $this->belongsTo('SaltContacts\Models\Contacts', 'contact_id', 'id')->withTrashed();
-    }
-
 }
