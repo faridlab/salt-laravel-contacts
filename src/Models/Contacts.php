@@ -134,10 +134,6 @@ class Contacts extends Resources {
         return $this->hasMany('SaltContacts\Models\ContactAddresses', 'contact_id', 'id');
     }
 
-    public function groups() {
-        return $this->hasMany('SaltContacts\Models\ContactGroups', 'contact_id', 'id');
-    }
-
     public function phones() {
         return $this->hasMany('SaltContacts\Models\ContactPhones', 'contact_id', 'id');
     }
@@ -152,6 +148,10 @@ class Contacts extends Resources {
 
     public function socials() {
         return $this->hasMany('SaltContacts\Models\ContactSocials', 'contact_id', 'id');
+    }
+
+    public function group() {
+        return $this->belongsTo('SaltContacts\Models\ContactGroups', 'group_id', 'id')->withTrashed();
     }
 
 }
