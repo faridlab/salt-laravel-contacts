@@ -26,6 +26,7 @@ class Contacts extends Resources {
         'orderby',
         // Fields table provinces
         'id',
+        'group_id',
         'first_name',
         'last_name',
         'company',
@@ -47,6 +48,7 @@ class Contacts extends Resources {
     ];
 
     protected $rules = array(
+        'group_id' => 'nullable|string',
         'first_name' => 'required|string',
         'last_name' => 'required|string',
         'company' => 'nullable|string',
