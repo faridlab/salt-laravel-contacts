@@ -14,7 +14,7 @@
     "laravel/framework": "^10.0",
     "doctrine/dbal": "^3.3",
     "faridlab/laravel-search-query": "^9.0",
-    "faridlab/salt-laravel": "^10.0.0",
+    "faridlab/salt-laravel": "^10",
     "zircote/swagger-php": "^4.4"
   },
   "require-dev": {
@@ -46,11 +46,5 @@
   "scripts": {
     "test": "vendor/bin/phpunit -c ./phpunit.xml --colors=always",
     "analysis": "vendor/bin/phpstan analyse"
-  },
-  "repositories": [
-      {
-          "type": "path",
-          "url": "~/Unicorns/startapp/frameworks/salt-laravel-core"
-      }
-  ]
+  }
 }
